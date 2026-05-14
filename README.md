@@ -19,10 +19,10 @@ GoVibe es un agente conversacional inteligente que actúa como tu conserje de oc
 Usuario (Gradio UI)
        │
        ▼
-  chat()  ←──── ConversationBufferMemory (historial)
+  chat()  ←──── historial completo de mensajes (memoria conversacional)
        │
        ▼
- AgentExecutor  (LangChain · create_tool_calling_agent)
+ create_agent  (LangChain · ReAct agent con LangGraph)
        │
   ┌────┴────┐
   ▼         ▼
@@ -31,17 +31,17 @@ Search      (@tool personalizado)
        │
        ▼
 ChatGoogleGenerativeAI
-  (Gemini 1.5 Flash, temp=0.7)
+  (gemini-2.5-flash-lite, temp=0.7)
 ```
 
 | Capa | Tecnología | Rol |
 |---|---|---|
-| LLM | Gemini 1.5 Flash (Google AI) | Razonamiento y generación de texto |
-| Orquestación | LangChain `create_tool_calling_agent` | Decide qué herramienta usar y cuándo |
+| LLM | gemini-2.5-flash-lite (Google AI) | Razonamiento y generación de texto |
+| Orquestación | `langchain.agents.create_agent` | Decide qué herramienta usar y cuándo |
 | Herramienta 1 | `DuckDuckGoSearchRun` | Busca planes y actividades reales |
 | Herramienta 2 | `@tool calcular_presupuesto` | Aritmética de presupuestos |
-| Memoria | `ConversationBufferMemory` | Mantiene el contexto de la conversación |
-| UI | Gradio `ChatInterface` | Interfaz web de chat |
+| Memoria | Historial de mensajes en estado Gradio | Mantiene el contexto de la conversación |
+| UI | Gradio `Blocks` + `Chatbot` | Interfaz web de chat |
 
 ---
 
@@ -78,6 +78,16 @@ python app.py
 ```
 
 La aplicación estará disponible en [http://localhost:7860](http://localhost:7860).
+
+---
+
+## Capturas de pantalla
+
+![GoVibe — conversación de planificación de viaje](screenshots/demo-chat.png)
+
+![GoVibe — búsqueda de actividades](screenshots/demo-search.png)
+
+![GoVibe — cálculo de presupuesto](screenshots/demo-budget.png)
 
 ---
 

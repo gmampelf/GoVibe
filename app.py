@@ -1,5 +1,4 @@
-"""
-GoVibe: Tu Conserje Social con IA
+"""GoVibe: Tu Conserje Social con IA
 ==================================
 Agente conversacional construido con LangChain 1.x + LangGraph + Gemini + Gradio.
 Ayuda a planificar salidas, buscar actividades y gestionar presupuestos.
@@ -74,7 +73,7 @@ TOOLS = [search, calcular_presupuesto]
 # Prompt maestro del sistema
 # ---------------------------------------------------------------------------
 
-SYSTEM_PROMPT = """Eres GoVibe, un conserje social con inteligencia artificial: enérgico, creativo y sumamente útil.
+SYSTEM_PROMPT = """Eres GoVibe, un consejero social con inteligencia artificial: enérgico, creativo y sumamente útil.
 Tu misión es ayudar a las personas a vivir experiencias increíbles diseñando planes de ocio personalizados.
 
 PERSONALIDAD:
@@ -205,21 +204,59 @@ EJEMPLOS = [
     "Planea una tarde en Madrid para 2 personas con un presupuesto de 50€",
     "¿Qué escape rooms hay en Barcelona este fin de semana?",
     "Somos 4 amigos en Valencia, gastamos 180€ en total, ¿cuánto toca por persona?",
+    "Mi pareja y yo no sabemos dónde ir de vacaciones, haznos una propuesta de un destino europeo con playa"
 ]
 
-demo = gr.ChatInterface(
-    fn=chat,
-    title="🚀 GoVibe: Tu Conserje Social con IA",
-    description=(
+LOGO_HTML = """
+<div style="display:flex; align-items:center; gap:14px; padding:16px 0 4px;">
+  <svg width="60" height="60" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="gvGrad" x1="15" y1="70" x2="125" y2="70" gradientUnits="userSpaceOnUse">
+        <stop offset="0%"   stop-color="#00d4ff"/>
+        <stop offset="45%"  stop-color="#a855f7"/>
+        <stop offset="100%" stop-color="#ff6969"/>
+      </linearGradient>
+      <filter id="gvGlow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="4" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <rect x="8" y="8" width="124" height="124" rx="24" ry="24"
+          fill="#13131f" stroke="#252540" stroke-width="2"/>
+    <path d="M 66,42 L 30,42 L 30,102 L 78,102 L 78,74 L 55,74"
+          fill="none" stroke="url(#gvGrad)" stroke-width="8"
+          stroke-linecap="round" stroke-linejoin="round" filter="url(#gvGlow)"/>
+    <path d="M 62,42 L 112,42 L 78,102"
+          fill="none" stroke="url(#gvGrad)" stroke-width="8"
+          stroke-linecap="round" stroke-linejoin="round" filter="url(#gvGlow)"/>
+  </svg>
+  <h2 style="margin:0; font-size:1.4rem; font-weight:700; line-height:1.2;">GoVibe: Tu Consejero Social con IA</h2>
+</div>
+"""
+
+
+CSS = """
+html, body { overflow: hidden !important; }
+footer     { display: none !important; }
+.chatbot   { height: calc(100vh - 250px) !important; overflow-y: auto !important; }
+"""
+
+with gr.Blocks(title="GoVibe") as demo:
+    gr.HTML(LOGO_HTML)
+    gr.Markdown(
         "**GoVibe** te ayuda a diseñar planes de ocio perfectos. "
         "Dime tu ciudad, cuántos sois, tu presupuesto y qué tipo de plan buscas "
         "y encontraré opciones reales para que lo paséis en grande. 🎉\n\n"
         "Puedo buscar restaurantes, conciertos, escape rooms, cine, actividades al aire libre "
         "y también calcular presupuestos y dividir cuentas."
-    ),
-    examples=EJEMPLOS,
-)
+    )
+    gr.ChatInterface(
+        fn=chat,
+        examples=EJEMPLOS,
+        chatbot=gr.Chatbot(show_label=False, layout="bubble"),
+        textbox=gr.Textbox(placeholder="Escribe tu mensaje aquí…", show_label=False, autofocus=True),
+    )
 
 
 if __name__ == "__main__":
-    demo.launch(share=False, theme=gr.themes.Soft(primary_hue="violet"))
+    demo.launch(share=False, css=CSS, theme=gr.themes.Soft(primary_hue="violet", font=gr.themes.GoogleFont("Google Sans")))
