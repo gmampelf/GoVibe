@@ -1,6 +1,19 @@
-# 🚀 GoVibe: Tu Conserje Social con IA
+---
+title: GoVibe
+emoji: 🎉
+colorFrom: purple
+colorTo: blue
+sdk: gradio
+sdk_version: "6.14.0"
+app_file: app.py
+pinned: false
+---
 
-GoVibe es un agente conversacional inteligente que actúa como tu conserje de ocio personal. Dile quién eres, con quién vas, qué presupuesto tienes y qué energía buscas, y él diseñará un plan a medida con opciones reales, precios aproximados e itinerarios completos.
+# 🚀 GoVibe: Tu Consejero Social con IA
+
+**[🚀 App en producción → huggingface.co/spaces/mampegu001/GoVibe](https://huggingface.co/spaces/mampegu001/GoVibe)**
+
+GoVibe es un agente conversacional inteligente que actúa como tu consejero de ocio personal. Dile quién eres, con quién vas, qué presupuesto tienes y qué energía buscas, y él diseñará un plan a medida con opciones reales, precios aproximados e itinerarios completos.
 
 ---
 
@@ -104,9 +117,12 @@ La aplicación estará disponible en [http://localhost:7860](http://localhost:78
 
 ## Despliegue en Hugging Face Spaces
 
+La app está desplegada en: **https://huggingface.co/spaces/mampegu001/GoVibe**
+
+Para desplegar tu propia instancia:
 1. Crea un nuevo Space en [huggingface.co/spaces](https://huggingface.co/spaces) con SDK **Gradio**.
 2. Sube todos los archivos del proyecto (excepto `.env`).
-3. En la pestaña **Settings → Repository secrets** del Space, añade:
+3. En la pestaña **Settings → Variables and secrets** del Space, añade:
    - **Name:** `GOOGLE_API_KEY`
    - **Value:** tu clave real de Google AI
 4. El Space leerá automáticamente esa variable de entorno al arrancar.
