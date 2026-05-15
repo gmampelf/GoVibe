@@ -96,11 +96,18 @@ La aplicación estará disponible en [http://localhost:7860](http://localhost:78
 
 ## Capturas de pantalla
 
-![GoVibe — conversación de planificación de viaje](screenshots/demo-chat.png)
+![Local — conversación de planificación chat](screenshots/demo-chat-local.png)
 
-![GoVibe — búsqueda de actividades](screenshots/demo-search.png)
+![Local — búsqueda de viaje](screenshots/demo-viaje-local.png)
 
-![GoVibe — cálculo de presupuesto](screenshots/demo-budget.png)
+![Local — chat 2](screenshots/demo-plan-local.png)
+
+![GoVibe -- chat 1](screenshots/demo-chat.png)
+
+![GoVibe -- chat 2](screenshots/demo-search.png)
+
+![GoVibe -- chat 3](screenshots/demo-budget.png)
+
 
 ---
 
