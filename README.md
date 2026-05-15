@@ -56,8 +56,8 @@ ChatGoogleGenerativeAI
 
 ```bash
 # 1. Clona el repositorio
-git clone https://github.com/tu-usuario/govibe.git
-cd govibe
+git clone https://github.com/gmampelf/GoVibe.git
+cd GoVibe
 
 # 2. Crea y activa un entorno virtual
 python -m venv .venv
